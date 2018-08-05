@@ -8,8 +8,14 @@ int N,W;
 int ws[1001];
 int ps[1001];
 
+#ifdef dimen
 unsigned int dp[1001][10001];
 unsigned int ret;
+#else
+
+unsigned int dp[10001];
+
+#endif
 
 /*
 int knap(int n, int w)
@@ -54,7 +60,7 @@ int knap(int n, int w)
 }
 */
 
-
+#ifdef dimen
 int knap(int n, int w)
 {
     for(int i = 1; i<=N; i++) {
@@ -71,6 +77,23 @@ int knap(int n, int w)
 
     return 0;
 }
+#else
+
+int knap(int n, int w)
+{
+
+    for(int i = 1; i<=N; i++){
+
+        for(int j = W; j >= ws[i]; j--){
+
+            dp[j] = std::max(dp[j-ws[i]] + ps[i], dp[j]);
+        }
+    }
+
+    return 0;
+}
+
+#endif
 
 
 
@@ -84,7 +107,11 @@ int main()
     }
 
     knap(0,0);
+#ifdef dimen
     std::cout<<dp[N][W]<<std::endl; 
+#else
+    std::cout<<dp[W]<<std::endl;
+#endif
 
     return 0;
 }
