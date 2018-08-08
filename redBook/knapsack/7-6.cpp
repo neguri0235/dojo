@@ -27,7 +27,7 @@ int knap(int n, int w )
 
     if(d[n][w] > 0) return d[n][w];
 
-    return d[n][w] = std::max(knap(n+1,w), knap(n+1, w+ws[n] + ps[n]));
+    return d[n][w] = std::max(knap(n+1,w), knap(n+1, w+ws[n]) + ps[n]);
 
 }
 
@@ -52,14 +52,6 @@ int main()
     memset(d,-1,sizeof(d));
 
     std::cout<<knap(1,0)<<std::endl;
-
-    for(int i = 0; i<5; i++) {
-
-        for(int j = 0; j<5; j++)
-        std::cout<<d[i][j]<<" ";
-        std::cout<<std::endl;
-
-    }
 
     return 0;
 }
