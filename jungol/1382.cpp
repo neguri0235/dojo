@@ -2,8 +2,8 @@
 
 using namespace std;
 
-int d[101][10001];
-int n, k;
+unsigned int d[10001][10001];
+int t, k;
 
 int a[101];
 int an[101];
@@ -11,23 +11,23 @@ int an[101];
 int main()
 {
 
+    cin>>t;
     cin>>k;
-    cin>>n;
 
-    for(int i = 1; i<=n; i++){
+    for(int i = 1; i<=k; i++){
         cin>>a[i]>>an[i];
     }
 
 
-    for(int i = 1; i<=k; i++){
+    for(int i = 1; i<=t; i++){
         d[i][0] = 1;
     }
 
     d[0][0] = 1;
 
-    for(int i = 1; i<=n; i++) {
+    for(int i = 1; i<=k; i++) {
 
-        for(int j = 1; j<=k; j++){
+        for(int j = 1; j<=t; j++){
 
             for(int l = 0; l <= an[i]; l++){
 
@@ -40,7 +40,7 @@ int main()
 
     }
 
-    std::cout<<d[n][k]<<std::endl;
+    std::cout<<d[k][t]<<std::endl;
 
     return 0;
 }
