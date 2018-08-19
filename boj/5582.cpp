@@ -5,7 +5,7 @@ int n,ans;
 std::string s1;
 std::string s2;
 
-int d[4000][4000];
+int d[4001][4001];
 
 int main()
 {
@@ -21,13 +21,13 @@ int main()
 
             if(s1[i-1] == s2[j-1]) {
                 d[i][j] = d[i-1][j-1]+1;
-            }else{
-                d[i][j] = std::max(d[i-1][j],d[i][j-1]);
+                ans = std::max(ans,d[i][j]);
+
             }
         }
     }
 
-    std::cout<<d[l1][l2]<<std::endl;
+    std::cout<<ans<<std::endl;
 
     return 0;
 }
