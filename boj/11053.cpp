@@ -1,4 +1,61 @@
 #include <iostream>
+
+using namespace std;
+
+int n;
+int a[1001];
+int d[1001];
+
+int lowerBound(int i, int end)
+{
+    int start = 0;
+    int mid;
+
+    while( start < end) {
+        mid = (start+end)/2;
+
+        if(d[mid] < i) start = mid + 1;
+        else end = mid;
+    }
+
+    return end;
+
+}
+
+int main()
+{
+    std::cin>>n;
+    for(int i=0; i<n; i++){
+        std::cin>>a[i];
+        d[i] = 0;
+    }
+
+    int ii = 0;
+
+    d[0] = a[0];
+
+    for(int i = 1; i<n; i++){
+
+        if(d[ii] < a[i]) d[++ii] = a[i];
+        else{
+
+           int ni =  lowerBound(a[i],ii);
+           d[ni] = a[i];
+        }
+
+    }
+
+    cout<<ii+1<<endl;
+
+    return 0;
+}
+
+
+
+
+#if 0
+
+#include <iostream>
 #include <cstdio>
 
 using namespace std;
@@ -77,4 +134,5 @@ int main()
     return 0;
 }
 
+#endif
 #endif
