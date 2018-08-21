@@ -1,5 +1,51 @@
 #include <iostream>
 
+using namespace std;
+
+int n;
+int a[101][101];
+long long d[101][101];
+
+int main()
+{
+    cin>>n;
+
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+            cin>>a[i][j];
+        }
+    }
+
+    d[0][0] = 1;
+
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+
+            if(a[i][j] > 0 && d[i][j]  > 0) {
+                if(j + a[i][j] < n)
+                    d[i][j + a[i][j]] += d[i][j];
+
+                if(i + a[i][j] < n)
+                    d[i+a[i][j]][j] += d[i][j];
+            }
+        }
+    }
+
+    cout<<d[n-1][n-1]<<endl;
+
+    for(int i = 0; i<n; i++){
+        for(int j = 0; j<n; j++){
+            cout<<d[i][j]<<" ";
+        }cout<<endl;
+    }
+
+    return 0;
+}
+
+
+#if 0
+#include <iostream>
+
 #define DBG 1
 #define MAX  101
 
@@ -86,3 +132,4 @@ void solve()
     std::cout<<d[N-1][N-1]<<std::endl;
 }
 
+#endif
