@@ -1,4 +1,44 @@
 #include <iostream>
+#include <cstdio>
+
+using namespace std;
+
+int n,m;
+int a[1001][1001];
+int d[1001][1001];
+
+int main()
+{
+    cin>>n>>m;
+    for(int i = 1; i<=n; i++) {
+        for(int j = 1; j<=m; j++){
+            scanf("%d",&a[i][j]);
+        }
+    }
+
+    d[1][1] = a[1][1];
+    for(int i = 1; i<=n; i++) {
+        for(int j = 1; j<=m; j++){
+            d[i][j] = std::max(d[i-1][j], d[i][j-1]) + a[i][j];
+        }
+    }
+
+/*
+    for(int i = 1; i<=n; i++) {
+        for(int j = 1; j<=m; j++){
+            printf(" %d",d[i][j]);
+        }
+        cout<<endl;
+    }
+*/
+
+    cout<<d[n][m]<<endl;
+    return 0;
+}
+
+#if 0
+
+#include <iostream>
 
 using namespace std;
 
@@ -63,4 +103,4 @@ void solve()
     cout<<m[N][M]<<endl;
     //print();
 }
-
+#endif
