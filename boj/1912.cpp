@@ -1,4 +1,45 @@
 #include <iostream>
+#include <cstdio>
+
+long long d[100001];
+long long m; 
+
+long long max(long long a, long long b) {
+    if(a > b) return a;
+    else return b;
+}
+
+
+int main()
+{
+    int n;
+    long long a;
+    std::cin>>n;
+    scanf("%lld",&a);
+
+    d[0] = a;
+    m =  a;
+
+    for(int i = 1; i<n; i++){
+        scanf("%lld",&a);
+
+        d[i] = max(a, d[i-1]+a);
+
+        if(d[i] > m) m = d[i];
+    }
+
+    std::cout<<m<<std::endl;
+
+    return 0;
+}
+
+
+
+
+
+#if 0
+
+#include <iostream>
 
 int d[1000001];
 
@@ -22,3 +63,4 @@ int main()
 
     return 0;
 }
+#endif
