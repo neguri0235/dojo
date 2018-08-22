@@ -1,29 +1,27 @@
 #include <iostream>
 #include <cstdio>
 
-int a[101];
-int d[10001];
+using namespace std;
+
+int a[102];
+int d[100002];
+
 int n,k;
 
 int main()
 {
+    cin>>n>>k;
 
-    std::cin>>n>>k;
-
-    for(int i = 0; i<n; i++){
-        scanf("%d",&a[i]);
-    }
-
+    for(int i = 0; i<n; i++) cin>>a[i];
     d[0] = 1;
 
     for(int i = 0; i<n; i++){
 
-        for(int j = a[i]; j<=k; j++) {
-            d[j] = d[j] + d[j - a[i]];
+        for(int j = a[i]; j<=k; j++){
+            d[j] += d[j -a[i]];
         }
     }
-
-    std::cout<<d[k]<<std::endl;
-
+    
+    cout<<d[k]<<endl;
     return 0;
 }
