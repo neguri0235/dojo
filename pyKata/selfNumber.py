@@ -1,0 +1,2 @@
+def selfNumber(n):
+    
