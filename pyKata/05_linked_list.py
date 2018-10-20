@@ -33,6 +33,9 @@ def merge_two_sorted_lists(L1, L2):
 
     print_lists(dummy_head)
 
+def reverse_lists(lists):
+    pass
+
 def print_lists(lists):
     lists = lists.next # remove dummy 
     while(lists is not None):
