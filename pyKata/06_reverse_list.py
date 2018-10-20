@@ -9,7 +9,7 @@ def print_node(n):
         print (n.val, end = ' ')
         n = n.next
 
-def reverse_my(n):
+def reverse(n):
     cur = n
     pre = None
 
@@ -22,17 +22,6 @@ def reverse_my(n):
     return pre
 
 
-
-def reverse(n):
-    prev = None
-    cur = n
-    while cur is not None:
-        next = cur.next
-        cur.next = prev
-        prev = cur
-        cur = next
-    return prev
-
 if __name__ == "__main__":
 
     n = ListNode(1)
@@ -42,6 +31,6 @@ if __name__ == "__main__":
     n.next.next.next.next = ListNode(5)
 
     print_node(n)
-    r = reverse_my(n)
-    print("reverse result")
+    print('\n')
+    r = reverse(n)
     print_node(r)
