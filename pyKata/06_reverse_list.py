@@ -6,7 +6,7 @@ class ListNode:
 
 def print_node(n):
     while n is not None:
-        print (n.val, end = ' ')
+        print (n.val)
         n = n.next
 
 def reverse(n):
