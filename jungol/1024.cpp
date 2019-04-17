@@ -1,56 +1,41 @@
 #include <iostream>
-#include <cstdio>
+#include <queue>
 
 
-int M,N;
 int a[501][501];
 int d[501][501];
 
 
-int dy[] = {1,-1,0,0};
-int dx[] = {0,0,1,-1};
+using namespace std;
 
-
-int f(int y, int x)
-{
-    if(y == M-1 && x == N-1) {
-        return 1;
-    }
-
-    if(d[y][x] != -1) return d[y][x];
-
-    d[y][x] = 0;
-
-    for(int i = 0; i<4; i++) {
-
-        int ny = y + dy[i];
-        int nx = x + dx[i];
-
-        if(ny >=0 && ny < M && nx >=0 && nx < N){
-            if(a[ny][nx] < a[y][x])
-                d[y][x] += f(ny,nx);
-        }
-
-
-
-    }
-
-    return d[y][x];
-
-}
+int dx[] = {1,0,-1,0};
+int dy[] = {0,-1,0,1};
 
 
 int main()
 {
-    std::cin>>M>>N;
-    for(int i = 0; i<M; i++) {
-        for(int j = 0; j<N; j++){
-            scanf("%d",&a[i][j]);
-            d[i][j] = -1;
+    int N,M;
+    ios::sync_with_stdio(false);
+    cin>>N>>M;
+
+    for(int i = 0; i<N; i++){
+        for(int j = 0; j<M; j++) {
+            cin>>a[i][j];
         }
     }
 
-    std::cout<<f(0,0)<<std::endl;
+    queue<pair<int,int>> q;
+    q.push(make_pair(0,0));
+
+    while(q.empty() == false) {
+        auto p = q.front();
+        for(int i = 0; i<4; i++) {
+            if( check(p.first + dy[i] , p.second + dx[i])){
+
+
+            }
+        }
+    }
 
     return 0;
 }
