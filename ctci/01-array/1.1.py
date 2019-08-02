@@ -7,15 +7,13 @@ def solve(string):
     else:
         print('B')
         return False
-
-class pTest(unittest.TestCase):
-    def t1(self):
+class Test(unittest.TestCase):
+    def test_t1(self):
         r = solve("hello")
         self.assertTrue(r)
     
-    def t2(self):
+    def test_t2(self):
         r = solve("hell")
         self.assertFalse(r)
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
