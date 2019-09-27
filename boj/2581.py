@@ -3,11 +3,11 @@ import math
 
 # 10000
 # 소수 구하기
-A = [1]*10001
-A[0] = A[1] = 0
+A = [1]*10002
+A[0] = A[1] = A[10000] = 0 
 
 for i in range(2,int(math.sqrt(10001))):
-    for j in range(2,10000):
+    for j in range(2,10001):
 
         if A[i] == 0:
             continue
