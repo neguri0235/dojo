@@ -1,4 +1,6 @@
-
+'''
+특정 금액을 만드는 경우의 수를 출력
+'''
 
 def makeChange(bills, target, sol = []):
 
