@@ -1,17 +1,33 @@
 #include <iostream>
 #include <algorithm>
-#include <cstdio>
 
 using namespace std;
 
-int ans,n,a[51];
+
+int N, A[52],ans;
 
 int main()
 {
-    cin>>n;
-    for(int i = 0; i<n; i++) scanf("%d",&a[i]);
-    sort(begin(a),begin(a)+n);
-    ans = a[0] *a[n-1];
+    ios_base::sync_with_stdio(false);
+    cin>>N;
+
+    for(int i = 0; i<N; i++){
+        cin>>A[i];
+    }
+
+    sort(begin(A),begin(A)+N);
+    ans = A[0]*A[N-1];
     cout<<ans<<'\n';
+
+#ifdef DBG
+    for(int i = 2; i<=77; i++){
+
+        if(77%i == 0){
+            cout<<i<<' ';
+        }
+    }
+
+#endif
+
     return 0;
 }

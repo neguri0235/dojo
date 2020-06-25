@@ -1,35 +1,39 @@
 #include <iostream>
-#include <vector>
 #include <algorithm>
+#include <vector>
 
 using namespace std;
 
-int n,m,c[10001],a[10001];
-vector<int> v;
+int N,M,A[9],check[9];
+vector<int>c;
 
 void go()
 {
-    if(v.size() ==m){
-        for(int i=0; i<m; i++)cout<<v[i]<<' ';
+    if(c.size() == (size_t)M){
+        for(auto e : c) cout<<e<<' ';
         cout<<'\n';
-        return;
+        return ;
     }
 
-    for(int i = 0; i<n; i++) {
-        //if(c[a[i]]) continue;
-        v.push_back(a[i]);
-        c[a[i]] = 1;
+    for(int i = 0; i<N; i++){
+        //if(check[i]) continue;
+        check[i] = 1;
+        c.push_back(A[i]);
         go();
-        c[a[i]] = 0;
-        v.pop_back();
+        c.pop_back();
+        check[i] = 0;
     }
 }
 
+
 int main()
 {
-    cin>>n>>m;
-    for(int i = 0; i<n; i++) cin>>a[i];
-    sort(begin(a), begin(a)+n);
+    cin>>N>>M;
+    for(int i = 0; i<N; i++){
+        cin>>A[i];
+    }
+
+    sort(begin(A),begin(A)+N);
     go();
     return 0;
 }

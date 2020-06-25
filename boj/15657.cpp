@@ -4,45 +4,31 @@
 
 using namespace std;
 
-int n,m,a[10];
-int c[10001];
-vector<int> v;
-
-
-void go()
+int N,M,A[9],check[9];
+vector<int>c;
+void go(int idx)
 {
-    if(v.size() == m) {
-
-
-        for(int i = 1; i<m; i++) {
-            if(v[i] < v[i-1]) return;
-        }
-
-
-
-        for(int i = 0; i<m; i++) cout<<v[i]<<' ';
+    if(c.size() == (size_t)M){
+        for(auto e : c) cout<<e<<' ';
         cout<<'\n';
         return;
     }
 
-    for(int i = 0; i<n; i++) {
-
-        c[a[i]] = 1;
-        v.push_back(a[i]);
-        go();
-        c[a[i]] = 0;
-        v.pop_back();
+    for(int i = idx; i<N; i++){
+        //if(check[i]) continue;
+        check[i] = 1;
+        c.push_back(A[i]);
+        go(i);
+        check[i] = 0;
+        c.pop_back();
     }
-}
 
+}
 int main()
 {
-    cin>>n>>m;
-
-    for(int i = 0; i<n; i++) cin>>a[i];
-    sort(begin(a),begin(a)+n);
-
-    go();
+    cin>>N>>M;
+    for(int i= 0; i<N; i++) cin>>A[i];
+    sort(begin(A),begin(A)+N);
+    go(0);
     return 0;
 }
-

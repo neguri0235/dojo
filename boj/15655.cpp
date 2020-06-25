@@ -4,47 +4,44 @@
 
 using namespace std;
 
-vector<int>v;
-int n,m;
-int a[10001];
-int c[10001];
 
+int A[10],N,M;
+int check[10];
+vector<int>c;
 
-void go()
-{
-    if(v.size() == m) {
-
-        for(int i = 1; i<m; i++) {
-            if(v[i-1] >= v[i]) return;
-        }
-
-        for(int i = 0; i<m; i++) {
-            cout<<v[i]<<' ';
-        }
-        cout<<'\n';
-        return;
-    }
-
-    for(int i = 0; i<n; i++) {
-        if(c[a[i]]) continue;
-
-        v.push_back(a[i]);
-        c[a[i]] = 1;
-        go();
-        v.pop_back();
-        c[a[i]] = 0;
-    }
-}
-
+void go(int);
 int main()
 {
-    cin>>n>>m;
-    for(int i = 0; i<n; i++) {
-        cin>>a[i];
+    ios_base::sync_with_stdio(false);
+
+    cin>>N>>M;
+    for(int i = 0; i<N; i++){
+        cin>>A[i];
     }
-    sort(begin(a),begin(a)+n);
-
-    go();
-
+    sort(begin(A), begin(A)+N);
+    go(0);
     return 0;
 }
+
+void go(int idx)
+{
+    if(c.size() == (size_t)M){
+        for(auto e : c){ cout<<e<<' ';}
+        cout<<'\n';
+        return ;
+    }
+
+
+    for(int i = idx; i<N; i++){
+
+        if(check[i]) continue;
+
+        check[i] = 1;
+        c.push_back(A[i]);
+        go(i);
+        check[i] = 0;
+        c.pop_back();
+    }
+
+}
+
