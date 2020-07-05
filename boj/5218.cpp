@@ -1,27 +1,35 @@
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-string s1,s2;
-int ans,tc;
-
+int n;
 int main()
 {
-    cin>>tc;
-    while(tc--) {
-        
+    string s1, s2;
+    cin>>n;
+    while(n--){
         cin>>s1>>s2;
+
         cout<<"Distances: ";
-        for(int i = 0; i<s1.size(); i++) {
 
-            if(s1[i] <= s2[i]) 
-                cout<<s2[i] - s1[i]<<' ';
-            else 
-                cout<<26 + s2[i] - s1[i]<<' ';
+        for(size_t i = 0; i<s1.size(); i++){
+
+            int ss1 = s1[i] - 'A';
+            int ss2 = s2[i] - 'A';
+
+            if(ss1 == ss2){
+                cout<<0<<' ';
+            }else if(ss1 < ss2){
+                cout<<(ss2-ss1)<<' ';
+            }else{
+                cout<<(ss2+26)-ss1<<' ';
+            }
+            
+
+
         }
-
-
+        cout<<'\n';
     }
-   
     return 0;
 }

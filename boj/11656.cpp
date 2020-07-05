@@ -1,26 +1,23 @@
 #include <iostream>
-#include <algorithm>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-string s;
-vector<string> vs;
-
 int main()
 {
-    cin>>s;
+    string str;
+    vector<string> v;
 
-    for(int i = 0; i<s.size(); i++) {
-       vs.push_back(s.substr(i+0,s.size()-i));
+    cin>>str;
+    size_t sz = str.size();
+
+    for(size_t i = 0; i<sz; i++){
+	v.push_back(str.substr(i,sz));
     }
 
-    sort(vs.begin(), vs.end());
-
-    for(int i = 0; i<vs.size(); i++) {
-        cout<<vs[i]<<'\n';
-    }
-
+    sort(begin(v), end(v));
+    for(auto e: v) {cout<<e<<'\n';}
 
     return 0;
 }
