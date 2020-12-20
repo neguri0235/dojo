@@ -2,4 +2,7 @@
 *.swp
 *.swo
 *.exe
+*.out.*
 ./vscode
+.vscode
+.DS_store
