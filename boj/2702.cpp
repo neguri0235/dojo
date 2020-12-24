@@ -2,26 +2,23 @@
 
 using namespace std;
 
-
-void go(int m)
+int gcd(int a, int b)
 {
-    int a = m/25;
-    cout<<a<<' ';
-    int b = (m - (a*25))/10;
-    cout<<b<<' ';
-    int c = (m - (a*25) - (b*10))/5;
-    cout<<c<<' ';
-    cout<<m%5<<'\n';
+    if(b == 0) return a;
+    else{
+        return gcd(b, a%b);
+    }
 }
-
 
 int main()
 {
-    int tc,money;
-    cin>>tc;
-    while(tc--) {
-        cin>>money;
-        go(money);
+    int t, a, b;
+    cin>>t;
+    while(t--){
+        cin>>a>>b;
+        int k = gcd(a,b);
+        int j = a*b/k;
+        cout<<j<<' '<<k<<endl;
     }
     return 0;
 }
