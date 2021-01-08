@@ -6,7 +6,7 @@ int n,ans;
 
 int check1[16]; // |
 int check2[16]; // /
-int check3[16]; // 
+int check3[40]; // 
 int a[15][15];
 
 int check(int i, int j)
