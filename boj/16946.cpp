@@ -23,7 +23,9 @@ void bfs(int x, int y)
     check[x][y] = true;
     group[x][y] = g;
     int cnt = 1;
-    
+    #ifdef CB
+    cout<<"IN: "<<x<<' '<<y<<endl;
+    #endif
     while(!q.empty()){
         int x, y;
         tie(x,y) = q.front(); q.pop();
@@ -39,6 +41,9 @@ void bfs(int x, int y)
             cnt +=1;
         }
     }
+    #ifdef CB
+    cout<<"CNT: "<<cnt<<endl;
+    #endif
     group_size.push_back(cnt);
 }
 
@@ -65,7 +70,7 @@ int main()
 
     for(int i = 0; i<n; i++){
         for(int j = 0; j<m; j++){
-            if(a[i][j]){
+            if(!a[i][j]){
                 cout<<0;
             }else{
                 set<int>near;
@@ -79,11 +84,15 @@ int main()
                     }
                 }
             
-            int ans = 1;
-            for(int g  :  near){
-                ans += group_size[g];
-            }
-            cout<<ans%10;
+                int ans = 1;
+                #ifdef CB
+                cout<<"near size: "<<near.size()<<endl;
+                #endif
+
+                for(int g  :  near){
+                    ans += group_size[g];
+                }
+                cout<<ans%10;
             
             }
         }
