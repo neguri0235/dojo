@@ -1,6 +1,5 @@
-5
-RRRBB
-GGBBB
-BBBRR
-BBRRR
-RRRRR
+4 4
+C...
+....
+**..
+**.C
