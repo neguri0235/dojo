@@ -6,6 +6,7 @@
     "python.pythonPath": "/home/jaehoc/miniconda3/bin/python",
     "editor.fontFamily": "“editor.fontFamily”:“Monaco”,",
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "algorithm": "cpp"
     }
 }
