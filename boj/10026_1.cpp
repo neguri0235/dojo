@@ -37,7 +37,7 @@ int main()
     }
 #endif
 
-    // three color 
+    // three color
 
     int ans1 = 0;
     int ans2 = 0;
