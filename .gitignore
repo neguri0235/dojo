@@ -4,5 +4,6 @@
 *.exe
 *.out.*
 ./vscode
+./idea
 .vscode
 .DS_store
