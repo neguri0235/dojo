@@ -76,6 +76,20 @@ def lambda_sort():
     print('after sort: ', sortedTuples)
     print(sorted(range(-5,6), key=lambda x: x*x))
 
+
+class Car:
+    def __init__(self, color, mileage):
+        self.color = color
+        self.mileage = mileage
+
+    def __str__(self):
+        return '__str__ for Car'
+
+    def __repr__(self):
+        return '__repr__ for Car'
+
+
+
 if __name__ == "__main__":
     print(greet())
     print(greetu())
@@ -92,3 +106,7 @@ if __name__ == "__main__":
     print(plus_3(3))
     lambda_test()
     lambda_sort()
+    my_car = Car('red', 14245)
+    print(my_car)
+    my_car
+
