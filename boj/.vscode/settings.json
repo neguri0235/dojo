@@ -3,10 +3,12 @@
     "python.testing.pytestEnabled": false,
     "python.testing.unittestEnabled": false,
     "python.testing.nosetestsEnabled": false,
-    "python.pythonPath": "/home/jaehoc/miniconda3/bin/python",
-    "editor.fontFamily": "“editor.fontFamily”:“Monaco”,",
+    "python.pythonPath": "/usr/local/bin/python3",
     "files.associations": {
         "vector": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iterator": "cpp",
+        "iostream": "cpp",
+        "deque": "cpp"
     }
 }
