@@ -1,0 +1,5 @@
+n = int(input())
+s = list(str(bin(n)))
+s.pop(0)
+s.pop(0)
+print(''.join(s))
