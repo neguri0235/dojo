@@ -3,52 +3,41 @@
 
 using namespace std;
 
-int n;
-list<char>li;
-string s;
-char cmd,ch;
-
 int main()
 {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    cout.tie(nullptr);
-
+    ios_base::sync_with_stdio(false);   
+    string s;
     cin>>s;
-
-    for(size_t i = 0; i<s.size(); i++){
-        li.push_back(s[i]);
-    }
-
+    list<char> input;
+    for(auto e : s) input.push_back(e);
+    int n;
     cin>>n;
-
-    auto iter = li.end();
+    char c;
+    auto pos = input.end();
     while(n--){
-
-        cin>>cmd;
-        if(cmd == 'P'){
-            cin>>ch;
-            li.insert(iter,ch);
-            //iter++;
-        }else if(cmd == 'L'){
-            if(iter != li.begin()) iter--;
-        }else if(cmd == 'B'){
-            if((iter--) != li.begin()){
-                li.erase(--iter);
-            }else{
-                iter++;
+        //scanf(" %c",&c);
+        cin>>c;
+        if(c == 'P') {
+//            scanf(" %c",&c);
+            cin>>c;
+            input.insert(pos,c);
+        }else if(c == 'L'){
+            if(pos != input.begin()) pos--;
+        }else if(c == 'B'){
+            if(pos != input.begin()) {
+                input.erase(prev(pos));
             }
-
-        }else if(cmd == 'D'){
-            if(iter != li.end()) iter++;
+        }else { //D
+            if(pos != input.end()) pos++;
         }
-
+#ifdef CB
+    for(auto c : input) {
+        cout<<c;
+    }cout<<'\n';
+#endif
     }
-
-    for(auto e : li){
-        cout<<e;
-    }
-    cout<<'\n';
-
+    for(auto c : input) {
+        cout<<c;
+    }cout<<'\n';
     return 0;
 }

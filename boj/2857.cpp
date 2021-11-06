@@ -1,33 +1,35 @@
 #include <iostream>
-#include <string>
 #include <vector>
 
 using namespace std;
 
-vector<int> v;
-string s;
-
 int main()
 {
-    for(int i = 1; i<=5; i++) {
+    ios_base::sync_with_stdio(false);
 
-        cin>>s;
-        for(int j = 2; j<s.size(); j++) {
-            
-            if(s[j-2] == 'F' && s[j-1] == 'B' && s[j] == 'I') {
-                v.push_back(i);
-                break;
-            }
+    int n = 5;
+    vector<string>v;
+    while(n--){
+       string s;
+       cin>>s;
+       v.push_back(s);
+    }
+
+    bool no = false;
+    
+    for(int i = 0; i<5; i++){
+
+        auto s = v[i];
+        auto it = s.find("FBI");
+        if(it != std::string::npos){
+            cout<<i+1<<endl;
+            no = true;
         }
-
     }
 
-    if(v.size() == 0) cout<<"HE GOT AWAY!";
-
-    for(int i = 0; i<v.size(); i++) {
-        cout<<v[i]<<' ';
+    if(!no) {
+        cout<<"HE GOT AWAY!"<<endl;
     }
-    cout<<'\n';
 
     return 0;
 }

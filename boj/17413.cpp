@@ -1,60 +1,50 @@
 #include <iostream>
+#include <string>
 #include <stack>
 
 using namespace std;
 
+
+void stack_flush(stack<char>&);
+
 int main()
 {
+    ios_base::sync_with_stdio(false);
+    stack<char> stk;
     string str;
     getline(cin, str);
-
-#ifdef DBG
-    cout<<str.size()<<endl;
-#endif
-
-
-    bool start = false;
-    bool word = false;
-
-    stack<char> stk;
-
-    for(size_t i = 0; i<str.size(); i++){
-        
-        if(str[i] == '<' && start == false){
-            cout<<str[i];
-            start = true;
-            continue;
+    #ifdef CB_
+    cout<<"input: "<<str<<' '<<str.size()<<endl;
+    #endif
+    size_t n = str.size();
+    size_t npos = 0;
+    bool open = false;
+    while(n--) {
+        char c = str[npos];
+        if(c == '>'){
+            open = false;
+            cout<<c;
+        }else if(c == '<' || open == true){
+            stack_flush(stk);
+            cout<<c;
+            open = true;
+        }else if(c == ' '){
+            stack_flush(stk);
+            cout<<' ';
+        }else{
+            stk.push(c);
         }
-
-        if(start){
-            cout<<str[i];
-            if(str[i] == '>') start = false;
-        }
-
-        if(!start){
-
-
-            if(stk.empty() && str[i] == ' '){
-                stk.push(str[i]);
-            }else if(str[i] != ' '){
-                stk.push(str[i]);
-            }else if(stk.empty() == false && str[i] == ' '){
-                while(!stk.empty()){
-                    cout<<stk.top(); stk.pop();
-                }
-                cout<<' ';
-            }else{
-
-                cout<<"NOT HERE"<<endl;
-            }
-
-
-        }
+        npos += 1;
     }
-    while(!stk.empty()){
-        cout<<stk.top();stk.pop();
-    }
-    cout<<'\n';
-
+    //if(!stk.empty())cout<<' ';
+    stack_flush(stk);
     return 0;
+}
+
+void stack_flush(stack<char>& stk)
+{
+    while(!stk.empty()){
+        cout<<stk.top();
+        stk.pop();
+    }
 }
