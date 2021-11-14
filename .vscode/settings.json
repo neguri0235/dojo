@@ -1,7 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "ostream": "cpp"
     },
     "python.testing.promptToConfigure": false,
     "python.testing.pytestEnabled": false,
