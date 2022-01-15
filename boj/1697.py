@@ -1,44 +1,41 @@
 import sys
-N,K = map(int, sys.stdin.readline().split())
+from collections import deque
 
-queue = []
+sys.stdin = open('in.txt','r')
 
-D = [0] * 100002
-W = [0] * 100002
-queue.append(N)
-D[N] = 1
-W[N] = 0
-next = N
-curr = N
+N, K = map(int, sys.stdin.readline().split())
 
-while True:
-    curr = queue[0]
-    del(queue[0])
+#print(n, k)
 
-#    print(curr)
+a = [0] * 100002
 
-    if curr == K:
+q = deque([])
+q.append(N)
+a[N] = 0
+
+while len(q):
+    c = q.popleft()
+    
+    # Find k
+    if c is K:
+        print(a[c])
         break
 
-    weight = W[curr]
+    n = c + 1
+    if n <= 100000 and(a[n] > a[c] or a[n] == 0):
+        a[n] = a[c] + 1
+        q.append(n)
 
-    next = curr+1
-    if next <= 100001 and D[next] == 0:
-        D[next] = 1
-        queue.append(next)
-        W[next] = weight + 1
- 
-    next = curr-1
-    if next >= 0 and D[next] == 0:
-        D[next] = 1
-        queue.append(next)
-        W[next] = weight + 1
- 
-    next = curr*2
-    if next <= 100001 and D[next] == 0:
-        D[next] = 1
-        queue.append(next)
-        W[next] = weight + 1    
+    n = c - 1    
+    if n >= 0 and (a[n] > a[c] or a[n] == 0):
+        a[n] = a[c] + 1
+        q.append(n)
 
-print(W[K])
+    n = c * 2
+    if n <= 100000 and(a[n] > a[c] or a[n] == 0):
+        a[n] = a[c] + 1
+        q.append(n)
 
+    
+
+    

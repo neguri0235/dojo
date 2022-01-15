@@ -1,73 +1,43 @@
-import collections
-import sys 
-
+import sys
+from collections import deque
 
 dbg = 1
-
-def calc(src, tar):
-
-    deq = collections.deque()
-    deq.append((src,'S'))
-
-    while len(deq):
-        r = deq.popleft()
-        num, path = r[0], r[1]
-
-        D = num*2%10000
-
-        if D == tar:
-            ret = path+'D'
-            ret = ret[1:]
-            return ret
-        else:
-            deq.append((D,path+'D'))
-
-        D = num-1
-        if D == 0: D = 9999
-
-        if D == tar:
-            ret = path+'S'
-            ret = ret[1:]
-            return ret
-        else:
-            deq.append((D,path+'S'))
-
-
-        s = str(num)
-        s += s[0]
-        s = s[1:]
-        D = int(s)
-
-        if D == tar:
-            ret = path+'L'
-            ret = ret[1:]
-            return ret
-        else:
-            deq.append((D,path+'L'))
-
-
-        s = str(num)
-        s = s[-1] + s
-        s = s[0:-1]
-        D = int(s)
-
-        if D == tar:
-            ret = path+'R'
-            ret = ret[1:]
-            return ret
-        else:
-            deq.append((D,path+'R'))
-
-        
-        
-
-
-
+if dbg: sys.stdin = open('in.txt','r')
 
 n = int(input())
-
 for _ in range(n):
-    s, t= map(int, sys.stdin.readline().split())
-    r = calc(s,t)
-    print(r)
+    a, b = map(int, sys.stdin.readline().split())
 
+    q = deque([])
+    
+    if dbg: print('start: ',a,b)
+    q.append([a,''])
+
+    while len(q):
+        p = q.popleft()
+
+        if p[0] == b:
+            print(p[1])
+            break
+
+        #D
+        d = (p[0] * 2) % 10000
+        c = p[1] + 'D'
+        q.append([d,c])
+
+        #S
+        d = p[0] - 1 
+        if d == 0:
+            d = 9999
+        c = p[1] + 'S'
+        q.append([d,c])
+
+        #L
+        d = p[0]%1000*10 + p[0]//1000
+        c = p[1] + 'L'
+        q.append([d,c])
+
+        #R
+        d = p[0]%10*1000 + p[0]%1000
+        c = p[1] + 'R'
+        q.append([d,c])

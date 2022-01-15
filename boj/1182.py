@@ -1,37 +1,23 @@
 import sys
 
-'''
-5 0
--7 -3 -2 5 8
-'''
-
-
+sys.stdin = open('in.txt','r')
 
 N, S = map(int, sys.stdin.readline().split())
+a = list(map(int, sys.stdin.readline().split()))
+ans = 0
 
-m = list(map(int, sys.stdin.readline().split()))
-
-res = 0
-
-
-def dfs(i , sum):
-    global res
-    if i == N:
-        if sum == S:
-            res += 1
-        return
-    if i > N:
+def dfs(s, idx):
+    
+    if idx == N:
+        if s == S:
+            global ans
+            ans +=1
         return
     
-    dfs(i+1, sum)
-    dfs(i+1, sum + m[i])
+    dfs(s + a[idx],idx+1)
+    dfs(s, idx+1)
 
-def worker():
-    global res
-    dfs(0,0)
-    if S== 0:
-        res -= 1
-    print(res)
-
-if __name__ == "__main__":
-    worker()
+dfs(0,0)
+if S == 0:
+    ans -= 1
+print(ans)
