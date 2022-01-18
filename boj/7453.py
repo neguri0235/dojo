@@ -5,26 +5,32 @@ import collections
 dbg = True
 if dbg: sys.stdin = open('in.txt','r')
 
-n = int(input())
-a = []
-for _ in range(n):
-    b = list(map(int, sys.stdin.readline().split()))
-    a.append(b)
+n = int(sys.stdin.readline())
+a = [[0 for i in range(n)] for j in range(n)]
 
-left = [0 for i in range(n*n)]
+A, B, C, D = [], [], [], []
+
+for i in range(n):
+    w, x, y, z = map(int, sys.stdin.readline().split())
+    A.append(w)
+    B.append(x)
+    C.append(y)
+    D.append(z)
+
 p = 0
 
-d = collections.defaultdict(int)
+left = collections.defaultdict(int)
+right = collections.defaultdict(int)
 
 for i in range(n):
     for j in range(n):
-        left[p] = a[i][0] + a[j][1]
-        d[a[i][2] + a[j][3]] += 1
-        p +=1
+        left[A[i] + B[j]] += 1
+        right[C[i] + D[j]] += 1
 
 ans = 0
 
 for e in left:
-    ans += d[-e]
+    if -e in right:
+        ans += left[e] * right[-e]
 
-print(ans)    
+print(ans)
