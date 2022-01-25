@@ -1,31 +1,23 @@
-'''
-ACAYKP
-CAPCAK
-'''
-
 import sys
 
-A =  list(sys.stdin.readline().rstrip())
-B = list(sys.stdin.readline().rstrip())
+dbg = 1
+if dbg: sys.stdin = open('in.txt','r')
 
-A.insert(0,'a')
-B.insert(0,'b')
+a = list(input())
+b = list(input())
 
-#print(A)
-#print(B)
-res = 0
-LEN = max(len(A), len(B))+1
+a.insert(0,'0')
+b.insert(0,'0')
 
-dp = [  [0 for i in range(LEN)] for j in range(LEN)]
+D = [ [ 0 for i in range(1002)] for j in range(1002)]
 
-for i in range(1, len(A)):
-    for j in range(1,len(B)):
-        if A[i] == B[j]:
-            dp[i][j] =dp[i-1][j-1] + 1
+
+for i in range(1,len(a)):
+    for j in range(1,len(b)):
+        
+        if a[i] == b[j]:
+            D[i][j] = D[i-1][j-1] + 1
         else:
-            dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-        res = max(res, dp[i][j])
-#for e in dp:
-#    print(e)
-#print(dp[len(A)-1][len(B)-1])
-print(res)
+            D[i][j] = max(D[i-1][j], D[i][j-1])
+
+print(D[len(a)-1][len(b)-1])
