@@ -1,6 +1,6 @@
 import sys
 
-dbg = 0
+dbg = 1
 if dbg: sys.stdin = open('in.txt','r')
 a = list(input())
 b = list(input())
@@ -30,17 +30,17 @@ def check(ans):
 
         if len(s) == ans:
             break
-
-        if a[x] == b[y]:
+        
+        if D[x][y] == D[x-1][y]:
+            x -= 1
+        
+        elif D[x][y] == D[x][y-1]:
+            y -= 1 
+        else:
             s.append(a[x])
-        if D[x][y] == D[x-1][y-1]:
-            x, y = x-1, y-1
-        elif D[x][y] == D[x-1][y]:
-            x, y = x-1, y
-        elif D[x][y] == D[x][y-1]:                
-            x, y = x, y-1
-        else:                
-            x, y = x-1, y-1
+            x -= 1
+            y -= 1
+
 
     s = ''.join(s)
     s = s[::-1]
