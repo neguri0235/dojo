@@ -1,41 +1,38 @@
 import sys
 import bisect
 dbg = 1
-#if dbg: sys.stdin = open('in.txt','r')
+if dbg: sys.stdin = open('in.txt','r')
 
 n = int(input())
 a = list(map(int, sys.stdin.readline().split()))
 
-L = []
-R = []
+L = [ 1 for i in range(1002)]
+R = [ 1 for i in range(1002)]
 
-for e in a:
-    idx = bisect.bisect_left(L,e)
-    if idx == len(L):
-        L.append(e)
-    else:
-        L[idx] = e 
+for i in range(1,n):
+    for j in range(0,i+1):
+        if a[i] > a[j] and L[j] >= L[i]:
+            L[i] += 1
 
-l, r = 0, 0
-while l < len(L):
-
-    if L[l] == a[r]:
-        l += 1
-        r += 1
-    else:
-        r += 1
-
-if dbg: print(l,r)
-
-
-for e in range(r, len(a)):
-    idx = bisect.bisect_left(R, -a[e])
-    if idx == len(R):
-        R.append(-a[e])
-    else:
-        R[idx] = -a[e]
+l = max(L)
 
 if dbg:
-    print(L)
-    print(R)
-print(len(L)+len(R))
+    for i in range(10):
+        print(L[i], end = ' ')
+    print()      
+
+for i in range(n-2, -1, -1):
+    for j in range(n-1, i, -1):
+        if a[i] > a[j] and R[j] >= R[i]:
+            R[i] += 1
+r = max(R)
+if dbg:
+    for i in range(10):
+        print(R[i], end = ' ')
+    print()
+
+
+ans = 0
+for i in range(n):
+    ans = max(ans,R[i] + L[i])
+print(ans-1)    
