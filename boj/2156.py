@@ -1,21 +1,26 @@
 import sys
+
+dbg = 1
+if dbg:
+    sys.stdin = open('in.txt','r')
+
 n = int(input())
+a = [ 0 for i in range(n+3)]
+D = [ 0 for i in range(n+3)]
 
-A = [0]*(n+2)
-D = [0]*(n+2)
+for i in range(n):
+    p = int(sys.stdin.readline())
+    a[i] = p
 
+a.insert(0,0)
 
-
+    
 for i in range(1,n+1):
-    A[i] = int(sys.stdin.readline())
+    D[i] = max(D[i-3]+a[i-1]+a[i], D[i-2]+a[i], D[i-1])
 
-D[1] = A[1]
-D[2] = A[1] + A[2]
-ans = D[2]
-for i in range(3,n+1):
-    temp2 = max((D[i-2], A[i-1] + D[i-3])) + A[i]
-    temp1 = max(D[i-1],temp2)
-    D[i] = max(temp1,temp2)
-    ans = max(D[i],ans)
-print(D)
-print(ans)
+if dbg:
+    for i in range(1, n+1):
+        print(D[i], end = ' ')
+    print()
+
+print(max(D))
