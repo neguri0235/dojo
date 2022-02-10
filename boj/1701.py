@@ -27,6 +27,6 @@ def preprocessing(p):
         
 
 for i in range(len(s)-1):
-    preprocessing(s[i:-1])
+    preprocessing(s[i:])
 
 print(ans)
