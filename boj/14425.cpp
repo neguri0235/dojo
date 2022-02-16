@@ -2,55 +2,90 @@
 #include <string>
 #include <vector>
 
-using namespce std;
-struct trie {
+using namespace std;
 
-struct Node {
-	int children[26];
-	bool valid;
-	Node() {
-		for (int i = 0; i<26; i++){
-			children[i] = -1;
+struct Trie {
+	struct Node {
+		bool valid;
+		int children[26];
+		Node() {
+			valid = false;
+			for (int i = 0; i<26; i++){
+				children[i] = -1;
+			}
 		}
-		valid = false;
-	}
-};
+	};
 
-vector<Node> trie;
-int root;
+	int root;
+	vector<Node> trie;
 
-int init() {
-	Node x;
-	trie.push_back(x);
-	return (int)trie.size() -1;
-}
-
-void add(int node, string& s, int index) {
-	if (index == s.size()){
-		trie[node].valid = true;
-		return;
+	int init(){
+		Node x;
+		trie.push_back(x);
+		return (int) trie.size()-1;
 	}
 
-	int c = s[index] - 'a';
-	if (trie[node].children[c] == -1) {
-		int next = init();
-		trie[node].children[c] = next;
+	Trie() {
+		cout<<"ctor"<<endl;
+		root = init();
+		cout<<"root: "<<root<<endl;
 	}
 
-	int child = trie[node].children[c];
-	add(child, s, index + 1);
-}
+	void add(int node, string& s, int index){
+		if(index == (int)s.size()){
+			trie[node].valid = true;
+			return;
+		}
 
-bool search (int node, string &s, int index){
-	if (node == -1) return false;
-	if (index == (int) s.length()) return trie[node].valid;
-	int c = s[index] - 'a';
-	int child = trie[node].children[c];
-	return search(child, s, index+1);
-}
+		int c = s[index] - 'a';
+		if(trie[node].children[c] == -1 ){
+			int next = init();
+			trie[node].children[c] = next;
+		}
+		int child = trie[node].children[c];
+		add(child, s, index+1);
+	}
+
+	void add(string& s) {
+		add(root, s, 0);
+	}
+
+	bool search(int node, string& s, int index){
+		if(node == -1) return false;
+		if(index == (int)s.size()){
+			return trie[node].valid;
+		}
+		int c = s[index] - 'a';
+		int child = trie[node].children[c];
+		return search(child, s, index+1);
+	}
+
+	bool search(string& s){
+		return search(root, s, 0);
+	}
+
 };
 
 int main()
 {
-	return 0;
+	ios_base::sync_with_stdio(false);
+	int n, m, ans = 0;
+	cin>>n>>m;
+	Trie trie;
+	while(n--){
+		string str;
+		cin>>str;
+		trie.add(str);
+		cout<<str<<' '<<str.size()<<' '<<trie.trie.size()<<endl;
+	}
+	
+	while(m--){
+		string str;
+		cin>>str;
+		if(trie.search(str)){
+			ans += 1;
+		}
+	}
+
+	cout<<ans<<'\n';
 }
